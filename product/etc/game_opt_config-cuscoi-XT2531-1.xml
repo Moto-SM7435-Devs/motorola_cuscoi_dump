@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Game optimizations device config
+-->
+<game-optimization version="1">
+
+    <devconfig>
+        <thermal-sensor>back_temp</thermal-sensor>
+        <!-- should be removed when stable line branch -->
+        <fps-observer>true</fps-observer>
+        <wifi-llm>true</wifi-llm>
+        <!-- TGPA config-->
+        <tgpa func="1,2,3,4,5,6,7,8" scene="1,2,3" >true</tgpa>
+        <!-- temperatures from low to high -->
+        <temp name="0" temp="0" tempClr="-10"/>
+        <temp name="35" temp="35" tempClr="26"/>
+        <temp name="36" temp="36" tempClr="34"/>
+        <temp name="37" temp="37" tempClr="35"/>
+        <temp name="38" temp="38" tempClr="36"/>
+        <temp name="39" temp="39" tempClr="37"/>
+        <temp name="40" temp="40" tempClr="38"/>
+        <temp name="41" temp="41" tempClr="39"/>
+        <temp name="42" temp="42" tempClr="40"/>
+        <temp name="43" temp="43" tempClr="41"/>
+        <temp name="44" temp="44" tempClr="42"/>
+        <temp name="45" temp="45" tempClr="43"/>
+        <temp name="46" temp="46" tempClr="44"/>
+        <temp name="47" temp="47" tempClr="45"/>
+        <temp name="48" temp="48" tempClr="46"/>
+        <temp name="49" temp="49" tempClr="47"/>
+        <temp name="50" temp="50" tempClr="48"/>
+        <temp name="51" temp="51" tempClr="49"/>
+        <!-- cpu profiles from low to high
+            MAX_FREQ_CLUSTER_BIG_CORE_0 = 0x40804000,
+            MAX_FREQ_CLUSTER_LITTLE_CORE_0 = 0x40804100,
+            MAX_FREQ_CLUSTER_PRIME_CORE_0 = 0x40804200,
+            MIN_FREQ_CLUSTER_BIG_CORE_0 = 0x40800000,
+            MIN_FREQ_CLUSTER_LITTLE_CORE_0 = 0x40800100,
+            MIN_FREQ_CLUSTER_PRIME_CORE_0 = 0x40800200,
+            MIN_ONLINE_CPU_CLUSTER_BIG = 0x41000000,
+            MIN_ONLINE_CPU_CLUSTER_LITTLE = 0x41000100,
+            MIN_ONLINE_CPU_CLUSTER_PRIME = 0x41000200,
+            CORE_CTL_ENABLE_BIG = 0x41008000,
+            CORE_CTL_ENABLE_PRIME  = 0x41008200,
+            SCHED_BOOST = 0x40C00000,
+            SCHED_ASYMCAP_BOOST = 0x43C00000,
+            PID_AFFINE = 0x42C20000,
+            GPU_MIN_POWER_LEVEL = 0X42804000,
+            GPU_MAX_POWER_LEVEL = 0X42808000,
+        -->
+        <!-- limit profile -->
+        <profile-adjuster downFpsVar="0.5" downTimeout="10000" upFpsDrop="2" upFpsVar="5"/>
+        <profile name="0">0x40804000, 960, 0x41008000, 0</profile>
+        <profile name="1">0x40804000, 1344, 0x41008000, 0</profile>
+        <profile name="2">0x40804000, 1651, 0x41008000, 0</profile>
+        <profile name="3">0x40804000, 2054, 0x41008000, 0</profile>
+        <profile name="4">0x40804000, 2208, 0x41008000, 0</profile>
+        <profile name="5">0x40804000, 2400, 0x41008000, 0</profile>
+
+        <!-- boost profile -->
+        <profile name="gmg">0x40804000, 1651, 0x41008000, 0</profile>
+        <profile name="boost_onlinecpu">0x41000000, 4</profile>
+        <profile name="boost_sched">0x40C00000, 1, 0x41008000, 0</profile>
+        <profile name="boost_sched_mincpu">0x40C00000, 1, 0x41008000, 0, 0x40800000, 1651, 0x40800100, 1324</profile>
+        <profile name="boost_sched_mincpu_mingpu">0x40C00000, 1, 0x41008000, 0, 0x40800000, 1651, 0x40800100, 1324, 0x42804000, 0x4</profile>
+        <profile name="boost_sched_maxcpu_maxgpu">0x40C00000, 1, 0x41008000, 0, 0x40800000, 2400, 0x40800100, 1958, 0x42804000, 0x0</profile>
+
+    </devconfig>
+
+    <!-- base game -->
+    <optimization name="base_game" mode="normal">
+        <thermal>ngb</thermal>
+        <default-rr>60</default-rr>
+        <llm>true</llm>
+        <hwlimit vol-scale="28,28"/>
+        <limit temp="0" profile="0-5"/>
+        <limit temp="40" profile="0-4"/>
+        <limit temp="42" profile="0-3"/>
+        <limit temp="45" rr="90" fps="45" profile="0-3"/>
+        <limit temp="47" rr="60" fps="30" profile="0-2"/>
+    </optimization>
+    <optimization name="base_game" mode="perf">
+        <thermal>ngame-perf</thermal>
+        <default-rr>auto</default-rr>
+        <llm>true</llm>
+        <hwlimit vol-scale="28,28"/>
+        <limit temp="0" profile="0-5"/>
+        <limit temp="42" profile="0-4"/>
+        <limit temp="44" profile="0-3"/>
+        <limit temp="49" profile="0-2"/>
+        <boost framedrop="10" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="base_game" mode="powersave">
+        <thermal>ngb</thermal>
+        <default-rr>60</default-rr>
+        <llm>true</llm>
+        <hwlimit vol-scale="28,28"/>
+        <battery-saver>true</battery-saver>
+        <limit temp="0" profile="0-5" rr="60"/>
+        <limit temp="45" profile="0-2" rr="60" fps="30"/>
+    </optimization>
+
+    <!-- 60fps game -->
+    <optimization name="60fps_game" parent="base_game">
+    </optimization>
+    <optimization name="60fps_heavy_game" parent="60fps_game">
+        <upmigrate fps="40"/>
+    </optimization>
+    <optimization name="60fps_restricted_game" parent="60fps_heavy_game">
+    </optimization>
+    <!-- 90fps game -->
+    <optimization name="90fps_game" parent="base_game">
+    </optimization>
+    <optimization name="90fps_heavy_game" parent="90fps_game">
+        <upmigrate fps="70"/>
+    </optimization>
+    <!-- 120fps game -->
+    <optimization name="120fps_game" parent="base_game">
+    </optimization>
+    <optimization name="120fps_heavy_game" parent="120fps_game">
+        <upmigrate fps="100"/>
+    </optimization>
+    <!-- 144fps game -->
+    <optimization name="144fps_game" parent="base_game">
+    </optimization>
+
+    <!-- 60fps_fine_tune_game game -->
+    <optimization name="60fps_fine_tune_game" parent="base_game" mode="normal">
+        <default-rr>60</default-rr>
+        <upmigrate fps="40"/>
+    </optimization>
+    <optimization name="60fps_fine_tune_game" parent="base_game" mode="perf">
+        <boost framedrop="5" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="60fps_fine_tune_game" parent="base_game" mode="powersave">
+    </optimization>
+
+    <!-- 90fps_fine_tune_game game -->
+    <optimization name="90fps_fine_tune_game" parent="base_game" mode="normal">
+        <default-rr>90</default-rr>
+        <upmigrate fps="70"/>
+    </optimization>
+    <optimization name="90fps_fine_tune_game" parent="base_game" mode="perf">
+        <boost framedrop="5" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="90fps_fine_tune_game" parent="base_game" mode="powersave">
+    </optimization>
+
+    <!-- 120fps_fine_tune_game game -->
+    <optimization name="120fps_fine_tune_game" parent="base_game" mode="normal">
+        <default-rr>120</default-rr>
+        <upmigrate fps="100"/>
+    </optimization>
+    <optimization name="120fps_fine_tune_game" parent="base_game" mode="perf">
+        <boost framedrop="5" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="120fps_fine_tune_game" parent="base_game" mode="powersave">
+    </optimization>
+
+    <!-- global mini game-->
+    <optimization name="mini_game" parent="base_game" mode="normal">
+        <limit profile="gmg"/>
+    </optimization>
+    <optimization name="mini_game" parent="base_game" mode="perf">
+        <limit profile="gmg"/>
+    </optimization>
+    <optimization name="mini_game" parent="base_game" mode="powersave">
+    </optimization>
+
+    <!-- GenshinImpact -->
+    <optimization name="genshin_game" parent="60fps_fine_tune_game" mode="normal">
+        <limit temp="0" profile="0-5" rr="90" fps="45"/>
+        <limit temp="43" profile="0-3" rr="60" fps="30"/>
+    </optimization>
+    <optimization name="genshin_game" parent="60fps_fine_tune_game" mode="perf">
+        <default-rr>60</default-rr>
+        <limit temp="0" profile="0-5"/>
+        <limit temp="43" profile="0-4" rr="90" fps="45"/>
+        <limit temp="47" profile="0-3" rr="60" fps="30"/>
+        <boost framedrop="5" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="genshin_game" parent="60fps_fine_tune_game" mode="powersave">
+        <limit temp="0" profile="0-3" rr="60" fps="30"/>
+    </optimization>
+
+    <!-- koh game 60fps-->
+    <optimization name="koh_game_60fps" parent="60fps_fine_tune_game" mode="normal">
+        <limit temp="0" profile="0-5" />
+        <limit temp="43" rr="90" fps="45" profile="0-3"/>
+        <limit temp="45" rr="60" fps="30" profile="0-3"/>
+    </optimization>
+    <optimization name="koh_game_60fps" parent="60fps_fine_tune_game" mode="perf">
+        <default-rr>60</default-rr>
+        <limit temp="0" profile="0-5" />
+        <limit temp="45" rr="90" fps="45" profile="0-3" />
+        <limit temp="47" rr="60" fps="30" profile="0-3" />
+        <boost framedrop="5" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="koh_game_60fps" parent="60fps_fine_tune_game" mode="powersave">
+        <limit temp="0" profile="0-5" rr="60"/>
+        <limit temp="43" profile="0-3" rr="60" fps="30"/>
+    </optimization>
+
+    <!-- pubg game -->
+    <optimization name="pubg_game" parent="60fps_fine_tune_game" mode="normal">
+    </optimization>
+    <optimization name="pubg_game" parent="60fps_fine_tune_game" mode="perf">
+        <default-rr>60</default-rr>
+        <boost framedrop="5" profile="boost_sched_mincpu"/>
+    </optimization>
+    <optimization name="pubg_game" parent="60fps_fine_tune_game" mode="powersave">
+    </optimization>
+
+    <!-- other games -->
+    <optimization name="other_games" parent="base_game">
+    </optimization>
+
+    <!-- fine tune games -->
+    <optimization name="com.tencent.tmgp.sgame" refs="koh_game_60fps" />
+    <optimization name="com.tencent.tmgp.sgamece" refs="koh_game_60fps" />
+    <optimization name="com.miHoYo.Yuanshen" refs="genshin_game" />
+    <optimization name="com.miHoYo.GenshinImpact" refs="genshin_game" />
+    <optimization name="com.miHoYo.Nap" refs="genshin_game" />
+    <optimization name="com.miHoYo.hkrpg" refs="genshin_game" />
+    <optimization name="com.tencent.tmgp.pubgmhd" refs="pubg_game" />
+    <optimization name="com.tencent.ig" refs="pubg_game" />
+    <optimization name="com.pubg.imobile" refs="pubg_game" />
+    <optimization name="com.dts.freefireth" refs="pubg_game" />
+    <optimization name="com.tencent.lolm" refs="60fps_fine_tune_game" />
+    <optimization name="com.tencent.nfsonline" refs="60fps_fine_tune_game" />
+    <optimization name="com.gameloft.android.ANMP.GloftA9HM" refs="60fps_fine_tune_game"/>
+    <optimization name="com.riotgames.league.wildrift" refs="120fps_fine_tune_game" />
+
+    <!-- Non-60fps PRC games -->
+    <optimization name="com.tencent.KiHan" refs="90fps_fine_tune_game" />
+    <optimization name="com.tencent.tmgp.cf" refs="120fps_fine_tune_game" />
+    <optimization name="com.pwrd.xxajh.lenovo" refs="120fps_fine_tune_game" />
+    <optimization name="com.pwrd.xsmdl.lenovo" refs="120fps_fine_tune_game" />
+    <optimization name="com.tencent.tmgp.WePop" refs="120fps_fine_tune_game" />
+    <optimization name="com.tencent.jkchess" refs="120fps_fine_tune_game" />
+    <optimization name="com.tencent.tmgp.cod" refs="90fps_fine_tune_game" />
+    <optimization name="com.tencent.af" refs="90fps_fine_tune_game" />
+    <optimization name="com.tencent.tmgp.speedmobile" refs="90fps_fine_tune_game" />
+    <optimization name="cc.thedream.qinsmoon.lenovo" refs="90fps_fine_tune_game" />
+    <optimization name="com.tencent.YiRen" refs="90fps_fine_tune_game" />
+    <optimization name="com.tencent.wmsj" refs="90fps_fine_tune_game" />
+    <optimization name="com.denachina.g13002010.lenovo" refs="90fps_fine_tune_game" />
+    <optimization name="com.netease.hyxd.lenovo" refs="90fps_fine_tune_game" />
+
+    <!-- Non-60fps ROW games -->
+    <optimization name="com.kiloo.subwaysurf" refs="90fps_fine_tune_game" />
+    <optimization name="com.mojang.minecrafttrialpe" refs="90fps_fine_tune_game" />
+    <optimization name="com.imangi.templerun2" refs="90fps_fine_tune_game" />
+    <optimization name="com.nianticlabs.pokemongo" refs="90fps_fine_tune_game" />
+    <optimization name="com.mojang.minecraftpe" refs="90fps_fine_tune_game" />
+    <optimization name="com.supercell.brawlstars" refs="90fps_fine_tune_game" />
+    <optimization name="jp.konami.duellinks" refs="90fps_fine_tune_game" />
+    <optimization name="com.com2us.smon.normal.freefull.google.kr.android.common" refs="90fps_fine_tune_game" />
+    <optimization name="com.ngame.allstar.eu" refs="90fps_fine_tune_game" />
+
+</game-optimization>

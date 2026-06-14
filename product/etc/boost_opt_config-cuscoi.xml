@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+/* Copyright (c) 2017-2020 Qualcomm Technologies, Inc.
+ * All Rights Reserved.
+ * Confidential and Proprietary - Qualcomm Technologies, Inc.
+ */
+-->
+
+<!--Ids are used in identifying the boosts, increment ids linearly,
+    do not modify Ids, or add in between-->
+<!--follow the number format rules while specifying number, can be given
+    in any format-->
+
+<BoostConfigs version="1">
+        <!--Note:
+              1. fps: Need add config for all supported fps, fps please use int value.
+                    If not need to set fps, please set fps to -1 in BootOptConfig.java
+
+              2. hintname: default name was hintId_109, hintId_110, the hintIds are defined in com.motorola.perf.MotoPerfManager
+                            You can change the name in BootOptConfig.java-->
+    <scrollappcategories name="com.android.chrome/com.google.android.apps.chrome.Main" category="102" />
+    <scrollappcategories name="com.instagram.android" category="104" />
+
+    <PerfBoost>
+
+<!--        heaviest scroll boost        -->
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="60" subType="205"
+            Resources="0x40800000, 2054, 0x40800100, 1651,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="90" subType="205"
+            Resources="0x40800000, 2054, 0x40800100, 1804,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="120" subType="205"
+            Resources="0x40800000, 2054, 0x40800100, 1804,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="144" subType="205"
+            Resources="0x40800000, 2054, 0x40800100, 1804,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+<!--        mid scroll boost        -->
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="60" subType="208"
+            Resources="0x40800000, 1651, 0x40800100, 1651,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="90" subType="208"
+            Resources="0x40800000, 1651, 0x40800100, 1651,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="120" subType="208"
+            Resources="0x40800000, 1651, 0x40800100, 1651,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" fps="144" subType="208"
+            Resources="0x40800000, 1651, 0x40800100, 1651,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+<!--        vertical scroll boost        -->
+<!--        TODO: not support fps in java code        -->
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" subType="201"
+            Resources="0x40800000, 1900, 0x40800100, 1497,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+
+<!--        horizontal scroll boost        -->
+<!--        TODO: not support fps in java code        -->
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- SCHED_BUSY_HYSTERSIS_CPU_MASK resource opcode, value-->
+        <!-- LPM Bias resource opcode, value-->
+        <!-- MIN_ONLINE_CPU_CLUSTER_BIG opcode, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_COLOCATION, value-->
+        <!-- SCHED_MIN_TASK_UTIL_FOR_BOOST, value-->
+
+        <Config
+            hintname="hintId_scrollBoost" subType="202"
+            Resources="0x40800000, 1651, 0x40800100, 1497,
+                       0x40C00000, 2, 0x40C74000, 0xF0, 0x40408000, 0x27, 0x41000000, 3,
+                       0x40C78000, 0, 0x40C7C000, 0" />
+
+<!--        boost for APP hints        -->
+
+        <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode, value -->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value -->
+
+<!--      boost for opening files from launcher       -->
+        <Config
+            hintname="hintId_120" timeout="1000"
+            Resources="0x40800000, 1651, 0x40800100, 1497" />
+<!--      boost for scrolling to -1 screen on launcher       -->
+        <Config
+            hintname="hintId_5"  timeout="2000"
+            Resources="0x40800000, 1651, 0x40800100, 1497" />
+
+<!--        back to home boost        -->
+
+        <!-- SCHEDBOOST resource opcode, value-->
+        <!-- CPUBOOST_MAX_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MAX_FREQ LITTLE Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ BIG Core resource opcode, value-->
+        <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value-->
+        <!-- POWER COLLAPSE resource opcode, value-->
+        <!-- STORAGE CLK SCALING resource opcode, value-->
+        <!-- GPU nap resource opcode, value-->
+
+        <Config
+            hintname="hintId_121" timeout="1000"
+            Resources="0x40C00000, 0x1, 0x40804000, 0xFFFF, 0x40804100, 0xFFFF,
+                      0x40800000, 1497, 0x40800100, 1497, 0x40400000, 0x1,
+                      0x42C10000, 0x1, 0x4281C000, 1500" />
+    </PerfBoost>
+</BoostConfigs>
