@@ -1,0 +1,14 @@
+# user 16 VUUI35HV-W1-ST23 06a6c6 release-keys
+- manufacturer: motorola
+- platform: parrot
+- codename: cuscoi
+- flavor: user
+- release: 16
+- id: VUUI35HV-W1-ST23
+- incremental: 06a6c6
+- tags: release-keys
+- fingerprint: motorola/cuscoi/cuscoi:15/VUUI35HV-W1-ST23/06a6c6:user/release-keys
+- is_ab: true
+- brand: motorola
+- branch: user-16-VUUI35HV-W1-ST23-06a6c6-release-keys
+- repo: motorola_cuscoi_dump
