@@ -1,0 +1,84 @@
+{
+  //                   back      |   front      |    wide|          front_II|        noida_wide|    noida_front
+  "imagers" :     [ "mot_imx896",  "mot_s5kjd1",   "mot_gc13a2",   "mot_ov32b40",   "mot_ov08f",   "mot_gc32e1"],
+  "camera-type" : [ "back-main",   "front-main",   "back-wide",    "front-main",    "back-wide",  "front-main"],
+  "mfnr-night" : {
+    "enable":                     [ true,       true,       true,       true,       true,       true ],
+    "params-dynamic" : [
+         { // default
+           "lux-upper" :          [ 20.0,       20.0,       20.0,       20.0,       20.0,       20.0  ],
+           "lux-lower" :          [ 0.0,        0.0,        0.0,        0.0,        0.0,        0.0   ],
+           "normal-ev" :          [ 0,          0,          0,          0,          0,          0     ],
+           "ev-exp-time" :        [ 0,          0,          0,          0,          0,          0     ]
+         },
+         { // 1st
+           "lux-upper" :          [ 0.3,        0.3,        0.3,        0.3,        0.3,        0.3   ],
+           "lux-lower" :          [ 0,          0,          0,          0,          0,          0     ],
+           "normal-ev" :          [ 0,          0,          5,          0,          5,          1     ],
+           "ev-exp-time" :        [ 80,        30,        125,        80,        125,        90   ]
+         },
+         { // 2th
+          "lux-upper" :           [ 0.5,        0.5,      0.5,      0.5,      0.5,      0.5 ],
+          "lux-lower" :           [ 0.3,        0.3,      0.3,      0.3,      0.3,      0.3 ],
+          "normal-ev" :           [ 5,          5,        5,        5,        5,        5   ],
+          "ev-exp-time" :         [ 144,        125,      125,      125,      125,      125 ]
+         },
+         { // 3st
+           "lux-upper" :          [ 3.0,        3.0,        3.0,        3.0,        3.0,        3.0   ],
+           "lux-lower" :          [ 0.5,        0.5,        0.5,        0.5,        0.5,        0.5   ],
+           "normal-ev" :          [ 4,          4,          4,          4,          4,          4     ],
+           "ev-exp-time" :        [ 140,        100,        100,        100,        100,        100   ]
+         },
+         { // 4nd
+           "lux-upper" :          [ 7.0,        7.0,        7.0,        7.0,        7.0,        7.0   ],
+           "lux-lower" :          [ 3.0,        3.0,        3.0,        3.0,        3.0,        3.0   ],
+           "normal-ev" :          [ 3,          3,          3,          3,          3,          3    ],
+           "ev-exp-time" :        [ 120,        86,         120,        120,        120,        86   ]
+         },
+         { // 5rd
+           "lux-upper" :          [ 15.0,       15.0,       15.0,       15.0,       15.0,       15.0 ],
+           "lux-lower" :          [ 7.0,        7.0,        7.0,        7.0,        7.0,        7.0  ],
+           "normal-ev" :          [ 2,          2,          2,          2,          2,          2    ],
+           "ev-exp-time" :        [ 100,        66,         100,        100,        100,        66  ]
+         },
+         { // 6th
+           "lux-upper" :          [ 20.0,      20.0,      20.0,      20.0,      20.0,      20.0 ],
+           "lux-lower" :          [ 15.0,      15.0,      15.0,      15.0,      15.0,      15.0  ],
+           "normal-ev" :          [ 1,         1,         1,         1,         1,         1   ],
+           "ev-exp-time" :        [ 83,        50,        50,        50,        50,        50   ]
+         }
+   ],
+    "lux-idx-to-std-params" : [
+      {
+        "sensor-name" : "mot_imx896", // Back main
+        "aCoefficient": -34.83,
+        "bCoefficient": 446.53
+      },
+      {
+        "sensor-name" : "mot_s5kjd1", // Front main
+        "aCoefficient": -30.42,
+        "bCoefficient": 410.35
+      },
+      {
+        "sensor-name" : "mot_gc13a2", // Back Wide
+        "aCoefficient" : -32.35,
+        "bCoefficient" : 475.07
+      },
+      {
+        "sensor-name" : "mot_ov32b40", // Front main_II
+        "aCoefficient": -30.42,
+        "bCoefficient": 410.35
+      },
+      {
+        "sensor-name" : "mot_ov08f", // Noida Back Wide
+        "aCoefficient" : -31.00,
+        "bCoefficient" : 436.00
+      },
+      {
+        "sensor-name" : "mot_gc32e1", // Noida Front main
+        "aCoefficient" : -31.00,
+        "bCoefficient" : 407.00
+      }
+    ]
+  }
+}
